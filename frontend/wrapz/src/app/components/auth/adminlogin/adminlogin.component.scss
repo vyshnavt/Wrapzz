@@ -1,0 +1,75 @@
+.maincontainer{
+    background-color: rgb(245, 245, 245);
+    
+    
+      // .imgdiv{
+    
+        // .blur{
+        //   width: 100%;
+        //   height: 600px;
+        //   background-color: aqua;
+        //   border: 50%;
+        //   filter: blur(8px);
+        //   -webkit-filter: blur(8px);
+        //   position: absolute;
+        //   z-index: -1;
+        // }
+        // .signup{
+        //   height: 350px;
+        //   width: 350px;
+        //   background-image: url('../../../assets/loginback.jpg');
+        //   background-color:#f3f3f3;
+         
+        // }
+      // }
+      
+      .logindiv{
+       
+        height: 500px;
+        
+        text-align: center;
+        .loginformdiv{
+          margin: 10px;
+          border-radius: 12px;
+          box-shadow:5px 5px 10px rgb(92, 90, 90);
+          background-color: #fff;
+          width:350px;
+    
+          .heading {
+            margin-top: 30px;
+            color: rgb(56, 54, 54);   
+          }
+    
+          .loginbody{
+    
+            margin: 10%;
+            .validate{
+              color: red;
+            }
+            .login-button{
+              width: 220px;
+            }
+           .google-button{
+            width: 220px;
+            background-color: rgb(228, 228, 228);
+            padding-right: 74px;
+            height: 35px;
+            
+            .googleimg{
+              width: 54px;
+              height: 36px;
+              }
+           }
+          }
+    
+          .signup{
+            margin-bottom: 20px;
+            a{
+              color: black;
+            }
+          }
+        
+        }
+      }
+    }
+    

@@ -1,0 +1,39 @@
+<div class="main">
+    <div class="head" fxLayout="row wrap">
+        <div fxHide fxShow.xs>
+            <button mat-button class="menu" [matMenuTriggerFor]="menu">
+                <mat-icon>menu</mat-icon> &nbsp;<span>Home</span>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Payment</button>
+                <button mat-menu-item>Business</button>
+                <button mat-menu-item>Normal</button>
+                <button mat-menu-item><a (click)="LogOut()">LogOut </a>
+                </button>
+            </mat-menu>
+        </div>
+
+        <div fxHide fxShow.xs class="mobileform" fxLayout="row wrap">
+            <form class="example-form">
+                <input type="text" placeholder="Search Category">
+                <span><button type="submit">
+                        <mat-icon>search</mat-icon>
+                    </button></span>
+            </form>
+        </div>
+        <div fxHide.xs>
+            <p class="header"><a [routerLink]="['/adminhome']">Warpz</a></p>
+        </div>
+        <div class="nav" fxHide.xs fxShow>
+
+            <mat-list role="list">
+                <mat-list-item role="listitem"><a [routerLink]="['/adminhome/payments']">Payment</a></mat-list-item>
+                <mat-list-item role="listitem"><a [routerLink]="['/adminhome/plans']">Plans</a></mat-list-item>
+                <mat-list-item role="listitem"><a [routerLink]="['/adminhome/business']">Business</a></mat-list-item>
+                <mat-list-item role="listitem"><a [routerLink]="['/adminhome/normal']">Normal</a></mat-list-item>
+                <mat-list-item role="listitem"><a (click)="LogOut()">LogOut</a></mat-list-item>
+            </mat-list>
+
+        </div>
+    </div>
+</div>

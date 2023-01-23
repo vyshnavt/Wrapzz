@@ -1,0 +1,219 @@
+<div *ngIf="userDetail?.user=='business'">
+    <div >
+        <div class="profile" fxLayout="column wrap">
+            <img src="{{userDetail.image}}" alt="">
+            <div class="edit">
+                <!-- <div><h1>{{user?.name}}</h1><h3>{{user?.category}}</h3></div> -->
+            </div>
+            <div class="options" >
+                <mat-list>
+                    <ng-template [ngIf]="follows" [ngIfElse]="userloggedOut">
+                        <mat-list-item><a (click)="follow()">Following</a><a (click)="follow()"><mat-icon>check_circle_outline</mat-icon></a></mat-list-item>
+                    </ng-template>
+                    <ng-template #userloggedOut>
+                        <mat-list-item ><a (click)="follow()">Follow</a><a (click)="follow()"><mat-icon>add_circle_outline</mat-icon></a></mat-list-item>
+                    </ng-template>
+                <mat-list-item ><a (click)="abouts()">About</a></mat-list-item>
+                <mat-list-item><a (click)="followers()">Followers({{userDetail?.followers?.length}})</a></mat-list-item>
+                <mat-list-item><button mat-button (click)="followers()">Following({{userDetail?.following?.length}})</button></mat-list-item>
+                <mat-list-item><a (click)="openHighlights()">Highlights</a></mat-list-item>  
+            </mat-list>
+        </div>
+         </div>
+    </div>
+    
+    <div class="info"><p>{{displayscreen}}</p></div>
+    
+    <div *ngIf="about" class="about" fxLayout="row wrap">
+        <div class="aboutDiv" fxFlex="50%" fxFlex.xs="100%" fxLayout="row wrap">
+                <div>
+                    <p>Name</p>
+                    <p>Email</p>
+                    <p>Number</p>
+                    <p>Category</p>
+                </div>
+                <div>
+                    <p>: &nbsp; {{userDetail.name}}</p>
+                    <p>: &nbsp; {{userDetail.email}}</p>
+                    <p>: &nbsp; {{userDetail.number}}</p>
+                    <p>: &nbsp; {{userDetail.category}}</p>
+                </div>
+        </div>
+        <div class="textdiv" fxFlex="50%" fxFlex.xs="100%">
+            <p style="text-decoration: underline;">About</p>
+            <h3></h3>
+        </div>
+    </div>
+    
+    <div *ngIf="followdiv" class="follows" fxLayout="row wrap">
+        <div class="textdiv" fxFlex="50%" fxFlex.xs="100%">
+            <p style="text-decoration: underline;">Followers({{userDetail.followers?.length}})</p>
+            <div class="showfollow" >
+                <div class="showblock" *ngFor="let follow of userDetail.followers">
+                    <a (click)="follosUser(follow._id)">
+                        <span><img src="{{follow.image}}"alt=""></span>
+                        <span><p>{{follow?.name}}</p></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="textdiv" fxFlex="50%" fxFlex.xs="100%">
+            <p style="text-decoration: underline;">Following({{userDetail.following?.length}})</p>
+            <div class="showfollow" >
+                <div class="showblock" *ngFor="let follow of userDetail.following">
+                    <a (click)="follosUser(follow._id)">
+                        <span><img src="{{follow.image}}"alt=""></span>
+                        <span><p>{{follow.name}}</p></span>
+                    </a>
+                </div>
+            </div>     
+        </div>
+    </div>
+    
+    <div *ngFor="let l of postData">
+        <div class="profilediv" >
+            <div class="post" fxLayout="row wrap" fxLayoutAlign="center center">
+                <div class="postheading" fxFlex="80%" fxFlex.sm="100%"  fxFlex.xs="100%"fxLayoutAlign="space-between center">
+                    <div class="userdetail" fxLayout="row">
+                        <div>
+                            <img src="{{userDetail.image}}" alt="" class="profileimg">
+                        </div>
+                        <div class="profilename">
+                            <strong>{{l.user[0].name}}</strong>
+                            <p>{{l.date | date }}</p>
+                        </div>
+                    </div>
+                    <!-- <div>
+                        <button class="menubutton" mat-button [matMenuTriggerFor]="Profileoption">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #Profileoption="matMenu" xPosition="before">
+                            <button mat-menu-item>Edit</button>
+                            <button mat-menu-item>Delete</button>
+                        </mat-menu>
+                    </div> -->
+                </div>
+                <div class="postcontent" fxFlex="65%" fxFlex.xs="90%">
+                    <div class="description">
+                        <p>
+                            {{l.description}}
+                        </p>
+                    </div>
+                    <div>
+                        <img src="http://localhost:3000/images/{{l._id}}.jpg" alt="">
+                    </div>
+                    <div class="feedback">
+                        <div><button (click)="getComment(l._id)"><mat-icon> comment</mat-icon></button></div>
+                        <div><button  (click)="onLike(l._id)"><mat-icon [ngStyle]="{ color :l.like.includes(userId) ? 'red' :'white'}">favorite</mat-icon></button></div>
+                        <div class="likecount"><span>{{l.like.length}}</span></div>
+                    </div>
+                    <div class="commentDiv">
+                        <ng-template [ngIf]="l.allComment" [ngIfElse]="comment">
+                            <div fxLayout="row wrap" class="commentDisplay" *ngFor="let c of l.allComments">
+                                <div class="commentauther" fxLayout="row wrap">
+                                    <div class="autherimg">
+                                        <img src="{{c.user[0].image}}" alt="">
+                                    </div>
+                                    <div class="authername">
+                                        <strong>{{c.username}}</strong>
+                                        <p>{{c.date | date}}</p>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <p>{{c.comment}}</p>
+                                </div>
+                                <div>
+                                    <button class="menubutton" mat-button [matMenuTriggerFor]="Profileoption"><mat-icon>more_vert</mat-icon></button>
+                                    <mat-menu #Profileoption="matMenu"   yPosition="above" xPosition="before">
+                                        <button mat-menu-item (click)="editComment(c._id,l._id)" *ngIf="userId==c.userId">Edit</button>
+                                        <button mat-menu-item (click)="deleteComment(c._id,l._id)">Delete</button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template #comment>
+                            <div fxLayout="row wrap" class="commentDisplay" *ngFor="let c of l.comment">
+                                <div class="commentauther" fxLayout="row wrap">
+                                    <div class="autherimg">
+                                        <img src="{{c.image}}" alt="">
+                                    </div>
+                                    <div class="authername">
+                                        <strong>{{c.username}}</strong>
+                                        <p>{{c.date | date}}</p>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <p>{{c.comment}}</p>
+                                </div>
+                                <div>
+                                    <button class="menubutton" mat-button [matMenuTriggerFor]="Profileoption"><mat-icon>more_vert</mat-icon></button>
+                                    <mat-menu #Profileoption="matMenu"   yPosition="above" xPosition="before">
+                                        <button mat-menu-item (click)="editComment(c._id,l._id)" *ngIf="userId==c.userId">Edit</button>
+                                        <button mat-menu-item (click)="deleteComment(c._id,l._id)">Delete</button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                        </ng-template>
+                        
+                        <div fxLayout="row wrap" class="commentDisplay">
+                            <div class="commentauther" fxLayout="row wrap">
+                                <div class="autherimg">
+                                    <img src="{{userCheck.image}}" alt="">
+                                </div>
+                                <div class="authername">
+                                    <strong>{{userCheck.name}}</strong>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <input type="text" placeholder="Write your comment" [(ngModel)]="commentvalue"><button (click)="postComment(l._id)">Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="normalUser" *ngIf="userDetail?.user=='normal'">
+    <div fxLayout="row wrap" class="main">
+        <div class="firstpart" fxFlex="40%" fxFlex.sm="100%" fxFlex.xs="100%">
+            <div class="imgdiv" fxFlex="80%">
+                <img src="{{userDetail.image}}" alt="">
+                <p>{{userDetail.name}}</p>
+                <p>{{userDetail.email}}</p>
+                <p>{{userDetail.number}}</p>
+            </div>
+        </div>
+        <div fxFlex="60%"  fxFlex.sm="100%" fxFlex.xs="100%" class="secondpart">
+            <div class="follows" fxFlex="40%">
+                <div class="follow">
+                    <h2>Followers({{userDetail.followers?.length}})</h2>
+                    <div class="showfollow" >
+                        <div class="showblock" *ngFor="let follow of userDetail.followers">
+                            <a (click)="follosUser(follow._id)">
+                                <span><img src="{{follow.image}}"alt=""></span>
+                                <span><p>{{follow?.name}}</p></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="follows" fxFlex="40%">
+                <div class="follow">
+                    <h2>Following({{userDetail.following?.length}})</h2>
+                    <div class="showfollow" >
+                        <div class="showblock" *ngFor="let follow of userDetail.followers">
+                            <a (click)="follosUser(follow._id)">
+                                <span><img src="{{follow.image}}"alt=""></span>
+                                <span><p>{{follow?.name}}</p></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

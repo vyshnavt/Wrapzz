@@ -1,0 +1,61 @@
+<div class="main" fxLayoutAlign="center">
+    <div class="content"  fxLayout="row wrap" fxFlex="80%" >
+        <h1></h1><div fxFlex></div><h2>validity:{{paymentData?.expirydate| date}}</h2>
+        <div class="detail" fxFlex="100%" >
+            <form action="" [formGroup]="reactiveform" (submit)="paymnetsubmit()">
+            <div class="plans" fxLayout="row wrap" >
+                <div class="plandetail" *ngFor="let plan of plans">
+                    <div class="radio"><input type="radio" formControlName="name" value="{{plan.name}}"></div>
+                    <h2>{{plan.name}}</h2>
+                    <h2>{{plan.days}}</h2>
+                    <h2>₹ {{plan.amount}}</h2>
+                </div>
+            </div>
+            <div class="payment">
+                <div class="paymentOption">
+                    <input type="radio" value="razor" formControlName="payment">
+                <label for="razor">Razorepay</label>
+                <!-- <input type="radio" value="payapal" formControlName="payment">
+                <label for="payapal">Paypal</label> -->
+                </div>
+                <div>
+                    <button mat-raised-button color="primary" type="submit">Recharge</button>
+                </div>
+            </div>
+        </form>
+        <br>
+            <div class="history">
+                
+                <h1>History</h1>
+                <div class="tables">
+                    <table mat-table [dataSource]="paymentData?.details" class="mat-elevation-z8" >
+          
+                        <ng-container matColumnDef="date">
+                          <th mat-header-cell *matHeaderCellDef> Date</th>
+                          <td mat-cell *matCellDef="let element"> {{element.date | date }} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="plan">
+                          <th mat-header-cell *matHeaderCellDef>Plan</th>
+                          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="amount">
+                          <th mat-header-cell *matHeaderCellDef>Amount</th>
+                          <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="days">
+                            <th mat-header-cell *matHeaderCellDef>Days</th>
+                            <td mat-cell *matCellDef="let element"> {{element.days}} </td>
+                          </ng-container>
+                      
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

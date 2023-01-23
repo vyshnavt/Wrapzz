@@ -1,0 +1,49 @@
+.main{
+
+    background-color: rgb(223, 223, 223);
+    .inputconatiner{
+        .inputdiv{
+            .heading{
+                text-align: center;
+                margin-top: 30px;
+            }
+            box-shadow:5px 5px 10px rgb(114, 96, 96);
+            background-color: #fff;
+            height: 320px;
+            width: 400px;
+
+            form{
+                margin-top: 60px;
+            }
+            button{
+                width: 200px;
+            }
+            
+        }
+    }
+
+    .categorydiv{
+        mat-list-item{
+            background-color: rgb(223, 223, 223);
+        }
+        .category{
+            padding: 20px;
+            margin-top: 100px;
+            box-shadow:5px 5px 10px rgb(114, 96, 96);
+            background-color: #fff;
+            height: 500px;
+            width: 400px;
+            overflow: auto;
+            .items{
+                align-items: center;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                button{
+                    background-color: #fff;
+                    border: none;
+                }
+            }
+        }
+    }
+}

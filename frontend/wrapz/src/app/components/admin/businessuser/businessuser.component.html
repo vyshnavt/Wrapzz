@@ -1,0 +1,41 @@
+<div class="main">
+    <div class="tableDiv">
+        <table mat-table [dataSource]="user" class="mat-elevation-z8" >
+          
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>Email</th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Join Date</th>
+              <td mat-cell *matCellDef="let element"> {{element.date | date }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="expire">
+              <th mat-header-cell *matHeaderCellDef>Expire</th>
+              <td mat-cell *matCellDef="let element"> {{element.expirydate | date}} </td>
+          </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let element">
+                  <ng-template [ngIf]="element.status" [ngIfElse]="status">
+                    <button mat-raised-button color="primary" (click)="blockUser(element._id)" >Block</button>
+                    </ng-template>
+                    <ng-template #status><button mat-raised-button color="primary" (click)="UnblockUser(element._id)" >
+                      Unblock</button>
+                  </ng-template>
+                </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+</div>

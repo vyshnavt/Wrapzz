@@ -1,0 +1,28 @@
+<div class="main" fxLayout="row wrap">
+    <div class="inputconatiner" fxFlex="50%" fxFlex.sm="100%"   fxFlex.xs="100%" fxLayoutAlign="center center">
+        <div class="inputdiv">
+            <div class="heading"><h1>Add Category</h1></div>
+            <form (ngSubmit)="onSubmit()" #myform="ngForm" class="loginbody" fxLayout="column wrap"
+            fxLayoutAlign="center center">
+            <p>
+              <mat-form-field class="hai" appearance="outline">
+                <mat-label>Category</mat-label>
+                <input matInput placeholder="Placeholder" name="name" required  ngModel >
+                <mat-error>This is required</mat-error>
+              </mat-form-field>
+            </p>
+            <small>{{categoryExist}}</small>
+            <p>
+              <button mat-raised-button class="login-button" type="submit" color="primary" >Add</button>
+            </p>
+          </form>
+        </div>
+    </div>
+    <div class="categorydiv" fxFlex="50%" fxFlex.sm="100%" fxLayoutAlign="center center">
+        <div class="category">
+            <mat-list role="list" *ngFor="let c of category">
+                <mat-list-item role="listitem"><div class="items">{{c.name}}<button (click)="edit(c.name)"><mat-icon>create</mat-icon></button></div></mat-list-item>
+              </mat-list>
+        </div>
+    </div>
+</div>

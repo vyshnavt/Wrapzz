@@ -1,0 +1,31 @@
+.header{
+    width: 100%;
+    height: 80px;
+    background-color: #3f51b5;
+    display: flex;
+    .logo{
+        padding-bottom: 8px;
+        width: 50px;
+        margin-left: 20px;
+    }
+    .headlog{
+        margin-left: 30px;
+        padding-top: 10px;
+        color: #ffff;
+        font-family: cursive;
+        font-weight: 600;
+
+        
+    }
+    .heading{
+        padding-top: 30px;
+        span{
+            margin-left: 15px;
+            padding-top: 16px;
+            color: #ffff;
+            font-family: cursive;
+            font-weight: 600;
+            font-size: xx-large;
+        }
+    }
+}

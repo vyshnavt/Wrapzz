@@ -1,0 +1,61 @@
+:host {
+    display: block;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px 16px;
+  }
+
+  .main{
+    padding: 20px;
+    input{
+        height: 28px;
+        border-radius: 7px;
+        border-color: #dfe0e1;
+    }
+    .firstpart{
+        .imgdiv{
+            text-align: center;
+            background-color: #e9e9e9;
+           p{
+            padding: 10px;
+            label{
+                margin-top: 10px;
+                background-color:  #3f51b5; 
+                padding: 4px;
+                border-radius: 4px;
+                color: #ffff;
+               }
+           }
+        }
+        .firstDetail{
+            background-color: aliceblue;
+        }
+        img{
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-top: 10px;
+        }
+    }
+
+    .secondpart{
+        margin-left: 10px;
+        padding-left: 20px;
+        select{
+            height: 32px;
+            border-radius: 7px;
+            border-color: #dfe0e1;
+            width: 169px;
+        }
+        textarea{
+            border-radius: 7px;
+            border-color: #dfe0e1;
+        }
+    }
+
+    .buttons{
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+  }

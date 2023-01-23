@@ -1,0 +1,110 @@
+.maincontainer{
+    background-color: rgb(245, 245, 245);
+    
+    
+      .firstdiv{
+        text-align: center;
+        .paragraphdiv{
+          width: 80%;
+          font-family: cursive;
+          font-size: xxx-large;
+          color: #37383a;
+          font-weight: 600;
+          text-align: start;
+          line-height: initial;
+
+
+          .changebutton{
+            text-align: center;
+            
+          }
+        }
+
+        .changelogin{
+          width: 120px;
+          height: 120px;
+          border-radius: 12px;
+          box-shadow:5px 5px 10px rgb(92, 90, 90);
+          background-color: #fff;
+          border: none;
+          font-family: cursive;
+          font-size: x-large;
+          font-weight: 600;
+          color: #37383a;
+        }
+
+    
+    
+        // .blur{
+        //   width: 100%;
+        //   height: 600px;
+        //   background-color: aqua;
+        //   border: 50%;
+        //   filter: blur(8px);
+        //   -webkit-filter: blur(8px);
+        //   position: absolute;
+        //   z-index: -1;
+        // }
+        // .signup{
+        //   height: 350px;
+        //   width: 350px;
+        //   background-color:#f3f3f3;
+         
+        // }
+      }
+      
+      .logindiv{
+       
+        height: 500px;
+        
+        text-align: center;
+        .loginformdiv{
+          margin: 10px;
+          border-radius: 12px;
+          box-shadow:5px 5px 10px rgb(92, 90, 90);
+          background-color: #fff;
+          width:350px;
+    
+          .heading {
+            margin-top: 30px;
+            color: rgb(56, 54, 54);   
+          }
+    
+          .loginbody{
+    
+            margin: 10%;
+            .validate{
+              color: red;
+            }
+            .login-button{
+              width: 220px;
+            }
+           .google-button{
+            width: 220px;
+            background-color: rgb(228, 228, 228);
+            padding-right: 74px;
+            height: 35px;
+            
+            .googleimg{
+              width: 54px;
+              height: 36px;
+              }
+           }
+          }
+    
+          .signup{
+            margin-bottom: 20px;
+            a{
+              color: black;
+            }
+          }
+        
+        }
+      }
+    }
+    .invisible{
+      display: block;
+      visibility: hidden;
+      height: 0;
+      width: 0;
+  }

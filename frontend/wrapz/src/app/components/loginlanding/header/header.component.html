@@ -1,0 +1,61 @@
+<div class="main">
+    <div class="head" fxlayout="row wrap">
+        <div fxHide fxShow.xs>
+            <button mat-button class="menu" [matMenuTriggerFor]="menu">
+                <mat-icon>menu</mat-icon> &nbsp;<span>Home</span>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Payment</button>
+                <button mat-menu-item>Chat</button>
+                <button mat-menu-item>Profile</button>
+                <button mat-menu-item></button>
+                <button mat-menu-item>Chat</button>
+                <button mat-menu-item><a (click)="LogOut()">LogOut </a>
+                </button>
+            </mat-menu>
+        </div>
+
+        <div fxHide fxShow.xs class="mobileform" fxLayout="row wrap">
+            <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+                <input type="text" placeholder="Search"  formControlName="name">
+                <span><button type="submit">
+                        <mat-icon>search</mat-icon>
+                    </button></span>
+            </form>
+        </div>
+        <div fxHide.xs>
+           <a [routerLink]="['/home']"><p class="header">Warpz</p></a> 
+        </div>
+        <div class="nav" fxHide.xs fxShow>
+            <mat-list role="list">
+                <mat-list-item role="listitem">
+                    <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+                        <input type="text" placeholder="Search" formControlName="name">
+                        <span><button type="submit">
+                                <mat-icon>search</mat-icon>
+                            </button></span>
+                    </form>
+                </mat-list-item>
+                <!-- <mat-list-item role="listitem">
+                    <button mat-button [matMenuTriggerFor]="category">Category</button>
+                    <mat-menu #category="matMenu">
+                        <button mat-menu-item><a>Shop</a></button>
+                        <button mat-menu-item><a >Artist</a></button>
+                    </mat-menu>
+                </mat-list-item> -->
+                <a [routerLink]="['chats']"><mat-list-item role="listitem" >Chat</mat-list-item></a>
+                <mat-list-item role="listitem">
+                    <button mat-button [matMenuTriggerFor]="user">{{username}}</button>
+                    <mat-menu #user="matMenu">
+                        <a (click)="onClick()"><button mat-menu-item>Profile</button></a>
+                        <a [routerLink]="['payment']" *ngIf="usertype=='business'"><button mat-menu-item>Payment</button></a>
+                        <a (click)="confirmBox()"><button mat-menu-item>LogOut</button></a>
+                    </mat-menu>
+                </mat-list-item>
+            </mat-list>
+
+        </div>
+        
+    </div>
+</div>
+<p></p>

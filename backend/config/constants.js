@@ -1,0 +1,12 @@
+module.exports={
+    BUSINESSUSER:"businessusers",
+    NORMALUSER:"normaluser",
+    ADMIN:"admin",
+    CATEGORY:"category",
+    POST:"post",
+    COMMENT:"comment",
+    PAYMENT:"payment",
+    PLANS:"plans",
+    CONVERSATION:'conversation',
+    MESSAGES:'message'
+}

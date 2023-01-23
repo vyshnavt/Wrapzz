@@ -1,0 +1,117 @@
+<div class="main">
+    <div class="content" fxLayout="row column">
+        <div class="history" fxFlex="30%" >
+            <div>
+                <form class="example-form">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Search</mat-label>
+                      <input type="text"
+                             placeholder="Pick one"
+                             aria-label="Number"
+                             matInput
+                             [formControl]="myControl"
+                             [matAutocomplete]="auto">
+                      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                          {{option}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </form>
+            </div>
+            <div class="messageBox" fxLayout="row column" *ngFor="let users of historyData">
+                <a (click)="getMessages(users._id,users.members)">
+                <div class="image">
+                    <ng-template [ngIf]="users.user.length!=0" [ngIfElse]="chatimage">
+                        <img src="{{users.user[0].image}}" alt="">
+                    </ng-template>
+                    <ng-template #chatimage>
+                        <img src="{{users.user2[0].image}}" alt="">
+                    </ng-template>
+                </div>
+                <div class="detail">
+                    <div class="userdetail" fxLayout="row column">
+                        <ng-template [ngIf]="users.user.length!=0" [ngIfElse]="chatuser">
+                            <p>{{users.user[0].name}}</p>
+                        </ng-template>
+                        <ng-template #chatuser>
+                            <p>{{users.user2[0].name}}</p>
+                        </ng-template>
+                        <p>Yesterday</p>
+                    </div>
+                    <div class="message">
+                        <p>hellow</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <ng-template [ngIf]="chat" [ngIfElse]="userchat">
+            <div class="chat" fxFlex="48%" >
+                <div class="userDetail">
+                    <div class="image">
+                        <img src="../../../assets/joh.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        <div class="userdetail" fxLayout="row column">
+                            <p>John</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chatBox">
+                    <div class="messages" *ngFor="let msg of messages">
+                        <ng-template [ngIf]="msg.senderId!=userData._id"  [ngIfElse]="message">
+                            <div class="detail">
+                                <div class="image">
+                                    <img src="../../../assets/joh.jpg" alt="">
+                                </div>
+                                <div class="message">
+                                    <p>{{msg.message}}</p>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template #message >
+                            <div class="details">
+                                <div class="message">
+                                    <p>{{msg.message}}</p>
+                                </div>
+                                <div class="image">
+                                    <img src="../../../assets/joh.jpg" alt="">
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="form">
+                    <form [formGroup]="reactiveForm" (ngSubmit)="submitMessage()">
+                            <input type="text" formControlName="message">
+                            <button>send</button>
+                    </form>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #userchat>
+            <div class="chat" fxFlex="48%" >
+                <div class="userChats">
+                </div>
+                <div class="EmptyChat">
+                    <p>One Good Conversation <br> Can Develop <br> Your Business</p>
+                </div>
+            </div>
+        </ng-template>
+        
+        <div class="online" fxFlex="20%">
+            <div class="messageBox" fxLayout="row column" *ngFor="let user of displayFollowers">
+                <a (click)="getSingleConversation(user._id)">
+                    <div class="image">
+                        <img src="{{user.image}}" alt="">
+                    </div>
+                    <div class="detail" >
+                            <p>{{user.name}}</p>
+                            <button></button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

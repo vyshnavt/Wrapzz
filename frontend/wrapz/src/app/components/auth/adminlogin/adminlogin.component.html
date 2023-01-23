@@ -1,0 +1,45 @@
+
+
+  <div class="maincontainer" fxFlex="100%" fxlayout="row wrap">
+
+    <div class="imgdiv" fxFlex="50%" fxLayout="row wrap" fxShow fxHide.xs fxLayoutAlign="center center">
+  
+    </div>
+    <div class="logindiv" fxFlex="35%" fxLayout=" wrap" fxFlex.xs="100%" fxLayoutAlign="center center">
+      <div class="loginformdiv" fxFlex.xs="100%" fxLayout="row wrap" fxLayoutAlign="center center">
+        <div class="heading mat-title">Admin Login</div>
+        <div fxFlex="100%" fxLayoutAlign="center center" fxLayout="wrap">
+          <form (ngSubmit)="onsubmit()" #myform="ngForm" class="loginbody" fxLayout="column wrap"
+            fxLayoutAlign="center center">
+            <p>
+              <mat-form-field class="hai" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Placeholder" name="email" required email ngModel >
+  
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error>email is required</mat-error>
+              </mat-form-field>
+  
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" name="password" ngModel required>
+  
+                <mat-icon mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  <mat-error>password is required</mat-error>
+  
+              </mat-form-field>
+            </p>
+  
+            <p class="validate" *ngIf="UserExist">{{UserExist}}</p>
+  
+            <p>
+              <button mat-raised-button class="login-button" type="submit" color="primary" >Login</button>
+            </p>
+          </form>
+        </div>
+      </div> 
+    </div> 
+  </div>

@@ -1,0 +1,33 @@
+<div class="row main">
+    <div class="signupformdiv" fxFlex="30%" fxFlex.xs="90%" fxFlex.sm="50%">
+      <div class="heading mat-title">
+        Registration Form
+      </div>
+      <div class="account">
+        <div class="normal">
+          <p>Normal</p>
+        </div>
+  
+        <div class="bussiness"><a [routerLink]="['/business']">Business</a></div>
+      </div>
+      <form (ngSubmit)="formsubmit()" #normalform="ngForm">
+        <Label>Name</Label>
+        <input type="text" name="name" placeholder="Your Name" ngModel required>
+        <Label>Email</Label>
+        <input type="text" name="email" placeholder="Your Email" ngModel required email #email="ngModel">
+        <Label>Number</Label>
+        <input type="number" name="number" placeholder="Your Mobile Number" ngModel required>
+        <p class="error" *ngIf="email.invalid && email.touched">Enter a valid Email</p>
+        <Label>Password</Label>
+        <input type="text" name="password" placeholder="Your Password" ngModel required>
+        <input type="text" hidden name="user" value="normal">
+        <small>{{UserExist}}</small>
+        <input type="submit" value="submit" name="" id="" [disabled]="!normalform.valid">
+      </form>
+      <div class="login">
+        <a [routerLink]="['']">Login Here</a>
+      </div>
+  
+    </div>
+  </div>
+  
